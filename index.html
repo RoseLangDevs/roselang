@@ -45,6 +45,64 @@
       
       <p>PEP 20 -- The Zen of Python, modified by Jan Růžička</p>
       
+      <h3>Basic syntax</h3>
+      
+      <p>
+        Syntax is very obvious, it looks like Python. Blocks are indented by <em>3 whitespaces</em>. And just and only with 3 whatespaces.
+        Functions without parameters need to have empty parenthesis (this will probably change). Rose has macros (expression and block).
+        You can transform operators into functions (like in Ruby, but a bit differently).
+      </p>
+      
+      <pre class="code">
+        print("Hello world!")  # => "Hello world!"
+        
+        PI = 3.14159  # PI!!float
+        
+        
+        # Rose is dynamic
+        
+        a = 1  # a!!int
+        a = "Foo!"  # a!!str
+        a = 'a'  # a!!chr
+        
+        if a!!bool:  # Type check
+          print("`a` is a boolean!")
+        
+        else:
+          print(a.cls.__name__)  # Object has reference to its class. Class has a reference to its name.
+        
+        print(q["Hello world!"])  # Expression macro - quasiquote, => something like "node.str(v: "Hello world!")"
+        
+        error:  # Block macro - error. Raises error if the first expression is true.
+          PI == 3
+          
+          "PI can't be 3!"
+        
+        assert:  # Same as above. Raises error if the first expression is false.
+          PI != 3
+          
+          "PI can't be 3!"
+        
+        def foo(bar, baz=3):  # Function. Last argument is optional/default.
+          print(bar * baz)  # This function returns `nil`. The last expression is returned.
+          
+          pass  # This "hack" does not work. `pass`es are automatically trimmed. They're used only for parsing.
+        
+        foo("Hello ")  # => "Hello Hello Hello "
+        foo(3, 9)  # => "27", function arguments are dynamic. You will be probably able to change this explicitly.
+                   # Maybe, it will look like `def foo(arg!!str)` or something like this...
+        
+        # Have I said that Rose should be different?
+        # Yes, and the difference is in the object model.
+        
+        def Person(@name, @age):  # Required keyword - non-positional - arguments
+          @{name: @name, age: @age}  # Syntatic sugar for object creation.
+        
+        # So it's just a function returning a dictionary.
+        # This will probably change, because the interpreter will need to add fields like `cls` and `to_s` and so on...
+        # But I like this concept.
+      </pre>
+      
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/RoseLangDevs/roselang">Rose</a> is maintained by <a href="https://github.com/RoseLangDevs">RoseLangDevs</a>.</span>
 
